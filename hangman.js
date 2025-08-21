@@ -1,4 +1,3 @@
-// Step 1: Come up with a random word for the user to guess
 /* This algorithm selects a random word from a dictionary api */
 async function fetchAndShowRandomWord() {
       const url = 'https://random-word-api.herokuapp.com/word?number=1';
@@ -8,8 +7,20 @@ async function fetchAndShowRandomWord() {
         const words = await resp.json(); // returns array, e.g. ["banana"]
         const word = words[0];
         document.getElementById('random word').textContent = word;
+        removeActivationButton();
       } catch (err) {
         console.error('Error fetching word:', err);
         document.getElementById('random word').textContent = 'Error loading word';
       }
     }
+
+function removeActivationButton() {
+  document.querySelector(".activation button").style.display = "none";
+}
+
+// Letter Guesses
+/* 
+1. The letter guessed is wrong -> fill in letter in incorrect spot + draw a portion of the hangman on the chart
+2. The letter guessed is right -> fill in the correct spots in blank chart
+3. The letter guessed has been guessed before -> pop up saying you've guessed that letter
+*/
