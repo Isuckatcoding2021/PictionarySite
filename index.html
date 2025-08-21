@@ -12,6 +12,13 @@
       <div class="gallows"></div>
       <div class="label">Correct Letters</div>
       <div class="correct-letters">
+        <div class="activation button">
+          <!-- Hidden button to trigger JS to generate random word -->
+          <button onclick="fetchAndShowRandomWord()">Generate Random Word</button>
+        </div>
+        <div id="random word">
+          <!-- Random word appears here -->
+        </div>
       </div>
     </div>
     <div class="section">
@@ -20,5 +27,6 @@
       </div>
     </div>
   </div>
+  <script src="hangman.js"></script>
 </body>
 </html>
