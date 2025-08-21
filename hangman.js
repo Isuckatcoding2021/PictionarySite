@@ -8,6 +8,7 @@ async function fetchAndShowRandomWord() {
         const word = words[0];
         document.getElementById('random word').textContent = word;
         removeActivationButton();
+        activateGamePlay(word);
       } catch (err) {
         console.error('Error fetching word:', err);
         document.getElementById('random word').textContent = 'Error loading word';
@@ -24,3 +25,16 @@ function removeActivationButton() {
 2. The letter guessed is right -> fill in the correct spots in blank chart
 3. The letter guessed has been guessed before -> pop up saying you've guessed that letter
 */
+
+function activateGamePlay(word) {
+  document.addEventListener("keydown", function(event) {
+    if (/^[a-zA-Z]$/.test(event.key)) {
+      // it is a letter
+      if (word.includes(event.key)) {
+        console.log("Letter in word");
+      } else {
+        console.log("Letter not in word");
+      }
+    }
+  });
+}
