@@ -8,6 +8,7 @@ async function fetchAndShowRandomWord() {
         const word = words[0];
         document.getElementById('random word').textContent = word;
         removeActivationButton();
+        removeHangman();
         activateGamePlay(word);
       } catch (err) {
         console.error('Error fetching word:', err);
@@ -19,6 +20,10 @@ function removeActivationButton() {
   document.querySelector(".activation button").style.display = "none";
 }
 
+function removeHangman() {
+  document.querySelector(".hangman").style.display = "none";
+}
+
 // Letter Guesses
 /* 
 1. The letter guessed is wrong -> fill in letter in incorrect spot + draw a portion of the hangman on the chart
@@ -27,6 +32,7 @@ function removeActivationButton() {
 */
 
 function activateGamePlay(word) {
+  console.log("Word is ", word)
   document.addEventListener("keydown", function(event) {
     if (/^[a-zA-Z]$/.test(event.key)) {
       // it is a letter

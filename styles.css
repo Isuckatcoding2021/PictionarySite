@@ -74,3 +74,76 @@ body {
       color: #333;
       text-decoration: underline;
     }
+
+    .beam {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 60px;
+      height: 5px;
+      background-color: black;
+    }
+
+    .rope {
+      position: absolute;
+      top: 5px;
+      left: 55px;
+      width: 2px;
+      height: 30px;
+      background-color: black;
+    }
+
+    .head {
+      position: absolute;
+      top: 30px;
+      left: 45px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid black;
+    }
+
+    .body {
+      position: absolute;
+      top: 50px;
+      left: 54px;
+      width: 2px;
+      height: 40px;
+      background-color: black;
+    }
+
+    .arm {
+      position: absolute;
+      top: 60px;
+      width: 30px;
+      height: 2px;
+      background-color: black;
+    }
+
+    .arm.left {
+      left: 25px;
+      transform: rotate(30deg);
+    }
+
+    .arm.right {
+      left: 55px;
+      transform: rotate(-30deg);
+    }
+
+    .leg {
+      position: absolute;
+      top: 90px;
+      width: 30px;
+      height: 2px;
+      background-color: black;
+    }
+
+    .leg.left {
+      left: 25px;
+      transform: rotate(30deg);
+    }
+
+    .leg.right {
+      left: 55px;
+      transform: rotate(-30deg);
+    }
