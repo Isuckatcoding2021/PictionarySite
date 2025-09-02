@@ -59,7 +59,7 @@ function hangMan(hangmanPoints) {
     show('.leg.left');
   } else {
     show('.leg.right');
-    endGame();
+    endGame('#lose');
   }
 }
 
@@ -68,11 +68,11 @@ function show(classname) {
   element.style.display = 'block';
 }
 
-function endGame() {
+function endGame(classname) {
   // Show Replay Button (to be created)
   document.removeEventListener("keydown", keydownHandler);
   keydownHandler = null;
-  show('#lose');
+  show(classname);
 }
 
 function logIncorrectLetter(guess, remaining_guesses) {
@@ -91,6 +91,13 @@ function showUserCorrectLetters(guess, word, remaining_guesses) {
     }
   }
   removeGuess(remaining_guesses, guess);
+
+  // Count remaining empty spaces
+  const remainingUnderscores = Array.from(spans).filter(span => span.textContent === '_').length;
+  if (remainingUnderscores === 0) {
+    endGame('#win');
+  }
+
 }
 
 function removeGuess(remaining_guesses, guess) {
