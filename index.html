@@ -12,7 +12,6 @@
       <div class="gallows">
         <div class="hangman">
           <div class="beam"></div>
-          <div class="rope"></div>
           <div class="head"></div>
           <div class="body"></div>
           <div class="arm left"></div>
@@ -24,7 +23,7 @@
       </div>
       <div class="label">Correct Letters</div>
       <div class="correct-letters">
-        <span>_</span>
+        <div id="underscore-container"></div>
         <div class="activation button">
           <!-- Hidden button to trigger JS to generate random word -->
           <button onclick="fetchAndShowRandomWord()">Generate Random Word</button>

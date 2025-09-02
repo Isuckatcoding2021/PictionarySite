@@ -7,22 +7,12 @@ async function fetchAndShowRandomWord() {
         const words = await resp.json(); // returns array, e.g. ["banana"]
         const word = words[0];
         document.getElementById('random word').textContent = word;
-        removeActivationButton();
-        removeHangman();
         activateGamePlay(word);
       } catch (err) {
         console.error('Error fetching word:', err);
         document.getElementById('random word').textContent = 'Error loading word';
       }
     }
-
-function removeActivationButton() {
-  document.querySelector(".activation button").style.display = "none";
-}
-
-function removeHangman() {
-  document.querySelector(".hangman").style.display = "none";
-}
 
 // Letter Guesses
 /* 
@@ -33,6 +23,7 @@ function removeHangman() {
 
 function activateGamePlay(word) {
   console.log("Word is ", word)
+  generateSpaces(word);
   document.addEventListener("keydown", function(event) {
     if (/^[a-zA-Z]$/.test(event.key)) {
       // it is a letter
@@ -43,4 +34,15 @@ function activateGamePlay(word) {
       }
     }
   });
+}
+
+function generateSpaces(word) {
+  const count = word.length;
+  const container = document.getElementById('underscore-container');
+
+  for (let i = 0; i < count; i++) {
+    const span = document.createElement('span');
+    span.textContent = '_';
+    container.appendChild(span);
+  }
 }
