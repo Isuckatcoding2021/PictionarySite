@@ -68,6 +68,10 @@ body {
       font-weight: bold;
     }
 
+    .correct-letters span {
+      color: green;
+    }
+
     .label {
       font-size: 20px;
       margin-bottom: 10px;
@@ -141,4 +145,21 @@ body {
     .leg.right {
       left: 95px;
       transform: rotate(-145deg);
+    }
+
+    .game.result {
+      position: absolute;
+      top: 100px;
+      left: 25%;
+      font-size: 100px;
+    }
+
+    #win {
+      display: none;
+      color: green;
+    }
+
+    #lose {
+      display: none;
+      color: red;
     }

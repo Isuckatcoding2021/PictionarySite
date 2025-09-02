@@ -15,20 +15,23 @@ async function fetchAndShowRandomWord() {
     }
 
 // Letter Guesses
-/* 
-1. The letter guessed is wrong -> fill in letter in incorrect spot + draw a portion of the hangman on the chart
-2. The letter guessed is right -> fill in the correct spots in blank chart
-3. The letter guessed has been guessed before -> pop up saying you've guessed that letter
-*/
+
+let keydownHandler = null;
+let hangmanPoints = 0; /* Track which part of the hangman needs to be shown */
+const unguessed_letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(97 + i));
 
 function activateGamePlay(word) {
   const unguessed_letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(97 + i));
-  let hangmanPoints = 0; /* Track which part of the hangman needs to be shown */
+  hangmanPoints = 0; // Reset global tracker
   cleanBoard();
   generateSpaces(word);
-  document.addEventListener("keydown", function(event) {
+  keydownHandler = createKeydownHandler(word, unguessed_letters);
+  document.addEventListener("keydown", keydownHandler);
+}
+
+function createKeydownHandler(word, unguessed_letters) {
+  return function(event) {
     if (/^[a-zA-Z]$/.test(event.key)) {
-      // it is a letter
       if (word.includes(event.key)) {
         showUserCorrectLetters(event.key, word, unguessed_letters);
       } else {
@@ -37,8 +40,10 @@ function activateGamePlay(word) {
         hangMan(hangmanPoints);
       }
     }
-  });
+  };
 }
+
+
 
 function hangMan(hangmanPoints) {
   console.log(hangmanPoints);
@@ -64,7 +69,10 @@ function show(classname) {
 }
 
 function endGame() {
-  console.log("You lose!");
+  // Show Replay Button (to be created)
+  document.removeEventListener("keydown", keydownHandler);
+  keydownHandler = null;
+  show('#lose');
 }
 
 function logIncorrectLetter(guess, remaining_guesses) {
@@ -95,6 +103,8 @@ function removeGuess(remaining_guesses, guess) {
 }
 
 function cleanBoard() {
+  const button = document.querySelector('.activation.button');
+  button.remove(); 
   const container = document.getElementById('underscore-container');
 
   // Get all span elements inside the container
