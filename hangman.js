@@ -33,6 +33,7 @@ function activateGamePlay(word) {
         showUserCorrectLetters(event.key, word, unguessed_letters);
       } else {
         logIncorrectLetter(event.key, unguessed_letters);
+        hangmanPoints++;
         hangMan(hangmanPoints);
       }
     }
@@ -40,19 +41,19 @@ function activateGamePlay(word) {
 }
 
 function hangMan(hangmanPoints) {
-  hangmanPoints++;
+  console.log(hangmanPoints);
   if (hangmanPoints == 1) {
     show('.head');
   } else if (hangmanPoints == 2) {
     show('.body');
   } else if (hangmanPoints == 3) {
-    show('arm left');
+    show('.arm.left');
   } else if (hangmanPoints == 4) {
-    show('arm right');
+    show('.arm.right');
   } else if (hangmanPoints == 5) {
-    show('leg left');
+    show('.leg.left');
   } else {
-    show('leg right');
+    show('.leg.right');
     endGame();
   }
 }
@@ -68,7 +69,9 @@ function endGame() {
 
 function logIncorrectLetter(guess, remaining_guesses) {
   const incorrectletterbox = document.querySelector('.missed-letters');
-  incorrectletterbox.textContent = guess;
+  if (remaining_guesses.includes(guess)) {
+    incorrectletterbox.textContent += guess;
+  }
   removeGuess(remaining_guesses, guess);
 }
 
