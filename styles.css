@@ -163,3 +163,19 @@ body {
       display: none;
       color: red;
     }
+
+    .green-button {
+      background-color: #4CAF50;       /* Fresh green */
+      color: black;                    /* Black text */
+      border: 2px solid black;       /* Slightly darker green border */
+      border-radius: 12px;             /* Rounded corners */
+      padding: 10px 20px;              /* Comfortable spacing */
+      font-size: 16px;                 /* Readable text */
+      cursor: pointer;                 /* Pointer on hover */
+      transition: background-color 0.3s ease;
+    }
+
+    .green-button:hover {
+      background-color: red;       /* Slight hover effect */
+    }
+

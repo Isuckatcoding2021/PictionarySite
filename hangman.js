@@ -6,7 +6,6 @@ async function fetchAndShowRandomWord() {
         if (!resp.ok) throw new Error('Network response was not OK');
         const words = await resp.json(); // returns array, e.g. ["banana"]
         const word = words[0];
-        document.getElementById('random word').textContent = word;
         activateGamePlay(word);
       } catch (err) {
         console.error('Error fetching word:', err);
